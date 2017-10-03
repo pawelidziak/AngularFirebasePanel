@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from "@angular/http";
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AngularFireModule } from 'angularfire2';
-
 import { AppComponent } from './app.component';
 
 // Initialize Firebase
@@ -23,6 +23,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     HttpModule,
+    NgbModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
