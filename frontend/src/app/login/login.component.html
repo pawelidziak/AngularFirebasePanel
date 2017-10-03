@@ -1,0 +1,85 @@
+<section class="login-section">
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10">
+
+      <!-- BOX -->
+      <div class="my-box">
+        <!-- BOX header -->
+        <div class="my-box-header">
+          <div class="row justify-content-around text-center">
+            <button class="box-button active">Login</button>
+            <button class="box-button">Register</button>
+          </div>
+        </div>
+
+        <!-- BOX content -->
+        <div class="row my-box-content">
+
+          <!-- other methods-->
+          <div class="col-6">
+            <p class="text--awarded--spacing">Other methods</p>
+            <p>You can also login using your social media or anonymously</p>
+
+            <div class="social-buttons btn-group-vertical col-12">
+
+              <button class="social-button-google btn btn-primary">
+                <span class="fa fa-google align-middle icon"></span>
+                <span class="align-middle text">Google</span>
+              </button>
+
+              <button class="social-button-facebook btn btn-primary">
+                <span class="fa fa-facebook align-middle icon"></span>
+                <span class="align-middle text">Facebook</span>
+              </button>
+
+              <button class="social-button-github btn btn-primary">
+                <span class="fa fa-github align-middle icon"></span>
+                <span class="align-middle text">GitHub</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- login with email -->
+          <div class="col-6">
+            <p class="text--awarded--spacing">Login with existing account</p>
+            <ngb-alert class="text-center" type="danger" *ngIf="error" [dismissible]="false">
+              {{error}}
+            </ngb-alert>
+
+            <form [(formGroup)]="loginForm" novalidate #f="ngForm" (ngSubmit)="f.form.valid && login()">
+
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="email" [(ngModel)]="email.value" required
+                       placeholder="Email*"/>
+                <ngb-alert type="danger" *ngIf="f.submitted && !email.valid" [dismissible]="false">
+                  Email is require
+                </ngb-alert>
+              </div>
+
+              <div class="form-group">
+                <input type="password" class="form-control" formControlName="password" [(ngModel)]="password.value"
+                       required placeholder="Password*"/>
+                <ngb-alert type="danger" *ngIf="f.submitted && !password.valid" [dismissible]="false">
+                  Password is require
+                </ngb-alert>
+              </div>
+
+              <div class="form-group text-center">
+                <button [disabled]="loading" class="btn btn-primary">Login</button>
+                <img *ngIf="loading"
+                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                <!--<a [routerLink]="['/register']" class="btn btn-link">Register</a>-->
+
+              </div>
+            </form>
+          </div>
+
+        </div> <!-- /BOX content -->
+      </div><!-- /BOX -->
+
+    </div>
+  </div> <!-- /row -->
+
+</section>
+

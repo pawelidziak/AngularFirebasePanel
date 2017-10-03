@@ -1,0 +1,45 @@
+.login-section {
+  padding-top: 50px;
+}
+
+.social-buttons button {
+  text-align: left;
+  opacity: 0.9;
+  border: none;
+  color: #fff;
+  width: 100%;
+}
+
+.social-buttons button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.icon {
+  width: 20px;
+  margin: 0 10px;
+}
+
+/* KOLORY IKON */
+.social-button-facebook {
+  background: #3b5998;
+}
+
+.social-button-google {
+  background: #dd4b39;
+}
+
+.social-button-github {
+  background: #333;
+}
+
+/*.btn:before {*/
+/*font-family: 'FontAwesome';*/
+/*content: "\f09a";*/
+/*background: red;*/
+/*font-size: 18px;*/
+/*padding: 11px 15px;*/
+/*margin-left: -13px;*/
+/*margin-right: 20px;*/
+/*}*/
+

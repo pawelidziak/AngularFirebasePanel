@@ -1,1 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
+h1, h2, h3, h4, h5, h6, p, span, a, i {
+  font-family: 'Roboto', sans-serif;
+}
+
+*[class*="--spacing"] {
+  letter-spacing: 2px;
+}
+
+*[class*="--header"] {
+  letter-spacing: 2px;
+}
+
+*[class*="--awarded"] {
+  font-weight: 700;
+}
+
+.app-container h2 {
+  font-size: 25px;
+  padding: 5px 0;
+}
+
+/* BOX */
+.my-box {
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24);
+}
+
+.my-box-header {
+  background: #10c982;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.24);
+  padding: 20px;
+}
+
+.my-box-content {
+  padding: 75px 50px;
+}
+
+/* BUTTON IN BOX*/
+.box-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.box-button:focus, .box-button:hover {
+  outline: none;
+}
+
+.box-button::after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  content: "";
+  transition: width 0.2s;
+}
+
+.box-button:hover::after {
+  width: 100%;
+}
+
+.active {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.active:after {
+  width: 100%;
+}
