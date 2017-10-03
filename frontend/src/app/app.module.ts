@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { routing } from './app.routing';
 
 // Initialize Firebase
 export const firebaseConfig = {
@@ -28,6 +29,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     HttpModule,
+    routing,
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     FormsModule,
