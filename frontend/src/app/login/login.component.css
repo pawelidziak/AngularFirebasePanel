@@ -2,6 +2,10 @@
   padding-top: 50px;
 }
 
+.social-buttons {
+  padding: 0;
+}
+
 .social-buttons button {
   text-align: left;
   opacity: 0.9;
@@ -31,6 +35,10 @@
 
 .social-button-github {
   background: #333;
+}
+
+.social-button-anonymously {
+  background: #9E9E9E;
 }
 
 /*.btn:before {*/
