@@ -9,9 +9,7 @@
 .social-buttons button {
   text-align: left;
   opacity: 0.9;
-  border: none;
   color: #fff;
-  width: 100%;
 }
 
 .social-buttons button:hover {

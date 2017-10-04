@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from "../_services/AuthService";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,10 @@ export class LoginComponent implements OnInit {
   error: string;
   loading: boolean;
 
-  constructor() { }
+  user: any;
+
+  constructor(private _authService: AuthService) {
+  }
 
   ngOnInit() {
     this.createFormControls();
@@ -38,8 +42,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(): void {
-
+  googleLogin(): void {
+    this._authService.googleLogin();
   }
 
 
