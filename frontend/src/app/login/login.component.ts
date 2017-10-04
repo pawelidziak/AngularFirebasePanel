@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../_services/AuthService";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   user: any;
 
-  constructor(private _authService: AuthService) {
+  constructor(private _router: Router, private _authService: AuthService) {
   }
 
   ngOnInit() {
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
 
   googleLogin(): void {
     this._authService.googleLogin();
+    this._router.navigate(['/home']);
   }
-
 
 }

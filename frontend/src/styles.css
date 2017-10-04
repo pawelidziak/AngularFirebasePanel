@@ -3,21 +3,17 @@ h1, h2, h3, h4, h5, h6, p, span, a, i {
   font-family: 'Roboto', sans-serif;
 }
 
-*[class*="--spacing"] {
-  letter-spacing: 2px;
+.my-header-style {
+  background: #10c982;
+  color: white;
 }
 
-*[class*="--header"] {
+*[class*="--spacing"] {
   letter-spacing: 2px;
 }
 
 *[class*="--awarded"] {
   font-weight: 700;
-}
-
-.app-container h2 {
-  font-size: 25px;
-  padding: 5px 0;
 }
 
 /* BOX */
@@ -64,12 +60,12 @@ h1, h2, h3, h4, h5, h6, p, span, a, i {
   width: 100%;
 }
 
-.active {
+.my-active {
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-.active:after {
+.my-active:after {
   width: 100%;
 }
 
@@ -78,4 +74,10 @@ h1, h2, h3, h4, h5, h6, p, span, a, i {
   color: #fff;
   background-color: #10c982;
   border-color: #10c982;
+}
+
+/* ICON w przycisku*/
+.button-icon {
+  width: 20px;
+  margin: 0 10px;
 }

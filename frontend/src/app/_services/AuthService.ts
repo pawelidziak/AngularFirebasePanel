@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from "@angular/router";
 import * as firebase from 'firebase';
-import {Observable} from "rxjs/Observable";
 
 
 @Injectable()
 export class AuthService {
 
   user: any = null;
-  // user: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router:Router) {
 
-    this.afAuth.authState.subscribe((auth) => {
-      this.user = auth
+    afAuth.authState.subscribe((auth) => {
+      this.user = auth;
     });
-
-    // this.user = afAuth.user;
 
   }
 
@@ -82,6 +78,7 @@ export class AuthService {
         this.user = credential.user;
         this.updateUserData();
         // this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+        this.router.navigate(['/home']);
       })
       .catch(error => console.log(error));
   }
@@ -132,7 +129,7 @@ export class AuthService {
 
   signOut(): void {
     this.afAuth.auth.signOut();
-    this.router.navigate(['/'])
+    this.router.navigate(['/login']);
   }
 
 

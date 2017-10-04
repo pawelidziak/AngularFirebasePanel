@@ -12,6 +12,8 @@ import { routing } from './app.routing';
 import {AuthService} from './_services/AuthService';
 import {AngularFireAuth} from "angularfire2/auth";
 import {AngularFireDatabase} from "angularfire2/database";
+import { HomeComponent } from './home/home.component';
+import {AuthGuard} from "./_quards/AuthGuard";
 
 // Initialize Firebase
 export const firebaseConfig = {
@@ -27,7 +29,8 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ export const firebaseConfig = {
     ReactiveFormsModule
   ],
   providers: [
+    AuthGuard,
     AuthService,
     AngularFireAuth,
     AngularFireDatabase

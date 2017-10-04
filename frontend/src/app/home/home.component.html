@@ -1,0 +1,55 @@
+<section class="home-section">
+
+  <nav class="navbar navbar-expand-lg navbar-dark my-header-style">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <button type="button" class="btn btn-link nav-link">Home</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-link nav-link">Link</button>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav my-2 my-lg-0">
+          <li class="nav-item">
+
+            <div ngbDropdown class="d-inline-block" placement="bottom-right">
+
+              <div class="text-center nav-link" id="aboutMe" ngbDropdownToggle >
+                <i class="fa fa-user-circle align-middle"></i><br>
+                <span>{{user.email}}</span>
+              </div>
+
+              <div ngbDropdownMenu aria-labelledby="aboutMe">
+                <button class="dropdown-item">Action - 1</button>
+                <button class="dropdown-item">Another Action</button>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" (click)="logout()">Logout</button>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10">
+
+      <p class="text--awarded--spacing text-center">You have been successfully logged in {{user.displayName}}</p>
+      
+    </div>
+  </div>
+
+</section>
+

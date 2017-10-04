@@ -1,4 +1,4 @@
-<section class="login-section">
+<section class="login-section container">
 
   <div class="row justify-content-center">
     <div class="col-12 col-md-10">
@@ -8,7 +8,7 @@
         <!-- BOX header -->
         <div class="my-box-header">
           <div class="row justify-content-around text-center">
-            <button class="box-button active">Login</button>
+            <button class="box-button my-active">Login</button>
             <button class="box-button" [routerLink]="['/register']">Register</button>
           </div>
         </div>
@@ -24,22 +24,22 @@
             <div class="social-buttons btn-group-vertical col-12">
 
               <button class="social-button-google btn" (click)="googleLogin()">
-                <span class="fa fa-google align-middle icon"></span>
+                <span class="fa fa-google align-middle button-icon"></span>
                 <span class="align-middle text">Google</span>
               </button>
 
               <button class="social-button-github btn">
-                <span class="fa fa-github align-middle icon"></span>
+                <span class="fa fa-github align-middle button-icon"></span>
                 <span class="align-middle text">GitHub</span>
               </button>
 
               <button class="social-button-facebook btn">
-                <span class="fa fa-facebook align-middle icon"></span>
+                <span class="fa fa-facebook align-middle button-icon"></span>
                 <span class="align-middle text">Facebook</span>
               </button>
 
               <button class="social-button-anonymously btn">
-                <span class="fa fa-user-o align-middle icon"></span>
+                <span class="fa fa-user-o align-middle button-icon"></span>
                 <span class="align-middle text">Anonymously</span>
               </button>
             </div>
