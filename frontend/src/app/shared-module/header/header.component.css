@@ -1,0 +1,7 @@
+.my-header {
+  padding-top: 50px;
+}
+
+.nav-item button, #aboutMe {
+  cursor: pointer;
+}

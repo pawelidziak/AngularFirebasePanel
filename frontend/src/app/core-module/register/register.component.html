@@ -17,14 +17,14 @@
         <!-- BOX content -->
         <div class="row justify-content-center my-box-content">
 
-          <div class="col-6">
+          <div class="col-12 col-md-6" style="padding-bottom: 50px">
             <p class="text--awarded--spacing">It is simply and free!</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
               ex ea commodo consequat. </p>
           </div>
 
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <form [(formGroup)]="registerForm" novalidate #f="ngForm" (ngSubmit)="f.form.valid && register()">
 
               <div class="form-group">
@@ -48,7 +48,8 @@
                        required
                        placeholder="Password*"/>
                 <ngb-alert type="danger" *ngIf="f.submitted && !password.valid" [dismissible]="false">
-                  Wrong password. Password requirements: 8-30 marks, small letter, big letter, digit and special character
+                  Wrong password. Password requirements: 8-30 marks, small letter, big letter, digit and special
+                  character
                 </ngb-alert>
               </div>
 
