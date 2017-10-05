@@ -3,6 +3,10 @@ h1, h2, h3, h4, h5, h6, p, span, a, i {
   font-family: 'Roboto', sans-serif;
 }
 
+body {
+  background: #f9f9f9;
+}
+
 .my-header-style {
   background: #10c982;
   color: white;
@@ -18,8 +22,9 @@ h1, h2, h3, h4, h5, h6, p, span, a, i {
 
 /* BOX */
 .my-box {
-  border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24);
+  background: #fff;
+  border-radius: 5px;
 }
 
 .my-box-header {
@@ -28,56 +33,47 @@ h1, h2, h3, h4, h5, h6, p, span, a, i {
   padding: 20px;
 }
 
-.my-box-content {
-  padding: 75px 50px;
-}
-
-/* BUTTON IN BOX*/
-.box-button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  font-size: 1.2rem;
-}
-
-.box-button:focus, .box-button:hover {
-  outline: none;
-}
-
-.box-button::after {
-  display: block;
-  left: 0;
-  bottom: -10px;
-  width: 0;
-  height: 2px;
-  background-color: #fff;
-  content: "";
-  transition: width 0.2s;
-}
-
-.box-button:hover::after {
-  width: 100%;
-}
-
-.my-active {
+.my-box-header span {
   font-size: 1.5rem;
-  font-weight: 700;
+  color: white;
+  font-weight: 600;
 }
 
-.my-active:after {
+.my-box-content {
+  padding: 50px;
+  margin: 0;
+}
+
+
+/*AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
+
+.login-button {
+  padding: 0.7em;
   width: 100%;
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 }
 
-/* Nadpisanie stylu bootstrapa dla przycisków */
-.btn-outline-success:hover {
-  color: #fff;
-  background-color: #10c982;
-  border-color: #10c982;
+.login-button:hover, .login-button:focus {
+  outline: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
 }
 
-/* ICON w przycisku*/
-.button-icon {
-  width: 20px;
-  margin: 0 10px;
+.header-spacing {
+  letter-spacing: 0.1em;
+}
+
+
+
+#arrow-back {
+  background: url('assets/images/arrow-back.svg');
+  background-size: 36px;
+  width: 36px;
+  height: 36px;
+  float: left;
+  cursor: pointer;
 }

@@ -1,20 +1,25 @@
-import {NgModule} from '@angular/core';
+import {AnimationEntryMetadata, NgModule} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {CommonModule} from "@angular/common";
 import {RegisterComponent} from "./register/register.component";
-import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModules} from "../shared-module/shared-module.module";
+import { LoginPageComponent } from './login-page/login-page.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { LoginEmailComponent } from './login-email/login-email.component';
+
+import {style, transition, animate, trigger} from "@angular/animations";
 
 @NgModule({
   declarations: [
     RegisterComponent,
-    LoginComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginPageComponent,
+    LoginEmailComponent
   ],
   imports: [
     CommonModule,
@@ -22,9 +27,13 @@ import {SharedModules} from "../shared-module/shared-module.module";
     NgbModule,
     SharedModules,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
-  exports: [],
+  exports: [
+    LoginPageComponent,
+    LoginEmailComponent
+  ],
   providers: [
   ]
 })

@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { Router } from "@angular/router";
+import {Injectable} from '@angular/core';
+import {AngularFireDatabase} from 'angularfire2/database';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {Router} from "@angular/router";
+import {Observable} from 'rxjs/Observable';
 import * as firebase from 'firebase';
 
 
@@ -10,7 +11,7 @@ export class AuthService {
 
   user: any = null;
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router:Router) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router: Router) {
 
     afAuth.authState.subscribe((auth) => {
       this.user = auth;
@@ -45,9 +46,19 @@ export class AuthService {
 
   // Returns current user display name or Guest
   get currentUserDisplayName(): string {
-    if (!this.user) { return 'Guest' }
-    else if (this.currentUserAnonymous) { return 'Anonymous' }
-    else { return this.user['displayName'] || 'User without a Name' }
+    if (!this.user) {
+      return 'Guest'
+    }
+    else if (this.currentUserAnonymous) {
+      return 'Anonymous'
+    }
+    else {
+      return this.user['displayName'] || 'User without a Name'
+    }
+  }
+
+  set currentUserDisplayName(name: string) {
+    this.user.displayName = name;
   }
 
   //// Social Auth ////
@@ -67,14 +78,14 @@ export class AuthService {
     return this.socialSignIn(provider);
   }
 
-  twitterLogin(){
+  twitterLogin() {
     const provider = new firebase.auth.TwitterAuthProvider()
     return this.socialSignIn(provider);
   }
 
   private socialSignIn(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
-      .then((credential) =>  {
+      .then((credential) => {
         this.user = credential.user;
         this.updateUserData();
         // this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
@@ -97,22 +108,27 @@ export class AuthService {
 
   //// Email/Password Auth ////
 
-  emailSignUp(email:string, password:string) {
+  emailSignUp(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.user = user;
+        console.log(user);
         this.updateUserData()
       })
-      .catch(error => console.log(error));
+      .catch((error: any) => {
+        throw new Error((error.message));
+      });
   }
 
-  emailLogin(email:string, password:string) {
+  emailLogin(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
         this.user = user;
-        this.updateUserData()
+        this.updateUserData();
       })
-      .catch(error => console.log(error));
+      .catch((error: any) => {
+        throw new Error((error.message));
+      });
   }
 
   // Sends email allowing user to reset password

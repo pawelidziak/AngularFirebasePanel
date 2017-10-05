@@ -1,10 +1,11 @@
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {RegisterComponent} from './core-module/register/register.component';
-import {LoginComponent} from './core-module/login/login.component';
 import {HomeComponent} from "./core-module/home/home.component";
 import {AuthGuard} from "./_quards/AuthGuard";
 import {ProfileComponent} from "./core-module/profile/profile.component";
+import {LoginEmailComponent} from "./core-module/login-email/login-email.component";
+import {LoginPageComponent} from "./core-module/login-page/login-page.component";
 
 const appRoutes: Routes = [
   {
@@ -13,7 +14,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginPageComponent
+  },
+  {
+    path: 'login-email',
+    component: LoginEmailComponent
   },
   {
     path: 'home',

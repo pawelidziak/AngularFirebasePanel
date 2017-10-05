@@ -1,0 +1,32 @@
+#lock {
+  width: 40%;
+  margin: 0 auto;
+  display: block;
+}
+
+#google {
+  background: #fff url('../../../assets/images/google.svg') no-repeat 25px;
+  background-size: 25px;
+}
+
+#fb {
+  background: #3B5998 url('../../../assets/images/facebook.svg') no-repeat 13px -3px;
+  background-size: 47px;
+  color: #fff;
+}
+
+#github {
+  background: #f9f9f9 url('../../../assets/images/github.svg') no-repeat 25px;
+  background-size: 25px;
+}
+
+#email {
+  background: #ECECEC url('../../../assets/images/email.svg') no-repeat 25px;
+  background-size: 25px;
+}
+
+
+.login-text {
+  letter-spacing: 0.05rem;
+  margin: 2rem 0;
+}

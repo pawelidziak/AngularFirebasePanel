@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../_services/AuthService";
 
 @Component({
@@ -16,9 +16,11 @@ export class RegisterComponent implements OnInit {
   confirmPassword: FormControl;
 
   error: string;
+  response: string;
   loading: boolean;
 
-  constructor(private _authService: AuthService) { }
+  constructor(private _authService: AuthService) {
+  }
 
   ngOnInit() {
     this.createFormControls();
@@ -52,6 +54,15 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-
+    this._authService.emailSignUp(this.email.value, this.password.value)
+      .then((res: any) => {
+        this.response = "You have been registered! You can log in now.";
+        this.error = '';
+      })
+      .catch((error: any) => {
+        this.error = error;
+        this.response = '';
+      });
   }
+
 }
