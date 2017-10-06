@@ -10,6 +10,7 @@ import * as firebase from 'firebase';
 export class AuthService {
 
   user: any = null;
+  loading: boolean;
 
   constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router: Router) {
 
@@ -17,6 +18,14 @@ export class AuthService {
       this.user = auth;
     });
 
+  }
+
+  get getLoading(): boolean {
+    return this.loading;
+  }
+
+  set setLoading(value: boolean) {
+    this.loading = value;
   }
 
   // Returns true if user is logged in
@@ -74,24 +83,27 @@ export class AuthService {
   }
 
   facebookLogin() {
-    const provider = new firebase.auth.FacebookAuthProvider()
+    const provider = new firebase.auth.FacebookAuthProvider();
     return this.socialSignIn(provider);
   }
 
   twitterLogin() {
-    const provider = new firebase.auth.TwitterAuthProvider()
+    const provider = new firebase.auth.TwitterAuthProvider();
     return this.socialSignIn(provider);
   }
 
   private socialSignIn(provider) {
+    this.loading = true;
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.user = credential.user;
-        // this.updateUserData();
-        // this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
         this.router.navigate(['/home']);
+        this.loading = false;
       })
-      .catch(error => console.log(error));
+      .catch((error: any) => {
+        this.loading = false;
+        throw new Error((error.message));
+      });
   }
 
 
@@ -103,40 +115,53 @@ export class AuthService {
         this.user = user;
         this.router.navigate(['/home']);
       })
-      .catch(error => console.log(error));
-  }
-
-  //// Email/Password Auth ////
-
-  emailSignUp(name: string, email: string, password: string) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.user = user;
-        this.updatePersonal(name);
-        this.router.navigate(['/home']);
-      })
       .catch((error: any) => {
         throw new Error((error.message));
       });
   }
 
+  //// Email/Password Auth ////
+
+  emailSignUp(name: string, email: string, password: string) {
+    this.loading = true;
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        this.user = user;
+        this.updatePersonal(name);
+        this.router.navigate(['/home']);
+        this.loading = false;
+      })
+      .catch((error: any) => {
+        this.loading = false;
+        throw new Error((error.message));
+      });
+  }
+
   emailLogin(email: string, password: string) {
+    this.loading = true;
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
         this.user = user;
-        // this.updateUserData();
+        this.router.navigate(['/home']);
+        this.loading = false;
       })
       .catch((error: any) => {
+        this.loading = false;
         throw new Error((error.message));
       });
   }
 
   // Sends email allowing user to reset password
   resetPassword(email: string) {
+    this.loading = true;
     const auth = firebase.auth();
 
     return auth.sendPasswordResetEmail(email)
+      .then(() => {
+        this.loading = false;
+      })
       .catch((error: any) => {
+        this.loading = false;
         throw new Error((error.message));
       });
   }
@@ -183,7 +208,7 @@ export class AuthService {
       displayName: name,
       photoURL: ''
     }).catch((error: any) => {
-        throw new Error((error.message));
-      });
+      throw new Error((error.message));
+    });
   }
 }

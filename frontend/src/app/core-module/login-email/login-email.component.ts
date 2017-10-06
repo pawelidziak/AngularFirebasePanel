@@ -11,18 +11,15 @@ export class LoginEmailComponent implements OnInit {
 
   error: string;
 
-  constructor(private _router: Router, private _authService: AuthService) {
+  constructor(public _authService: AuthService) {
   }
 
   ngOnInit() {
   }
 
   onSubmit(formData): void {
+    this.error = '';
     this._authService.emailLogin(formData.value.email, formData.value.password)
-      .then((res: any) => {
-        this._router.navigate(['/home']);
-        this.error = '';
-      })
       .catch((error: any) => {
         this.error = error;
       });

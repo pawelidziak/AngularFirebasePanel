@@ -4,7 +4,10 @@
 
   <div class="container">
     <div class="row justify-content-center my-box">
-      <div class="col-12 col-md-10 profile-content">
+
+      <p style="padding: 50px 0" *ngIf="anonim">You cannot change profile settings as Anonymous User.</p>
+
+      <div class="col-12 col-md-10 profile-content" *ngIf="!anonim">
 
         <ngb-alert class="text-center" [type]="checkRes()" *ngIf="response" [dismissible]="false">
           {{response}}

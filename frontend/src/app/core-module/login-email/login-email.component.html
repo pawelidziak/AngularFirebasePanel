@@ -10,7 +10,7 @@
           <span class="header-spacing">Email Login</span>
         </div>
 
-        <div class="my-box-content text-center row">
+        <div class="my-box-content text-center row justify-content-center">
 
           <div class="col-12 col-md-6">
             <img src="assets/images/perm.svg" class="welcome-icon">
@@ -22,6 +22,10 @@
             <ngb-alert class="text-center" type="danger" *ngIf="error" [dismissible]="false">
               {{error}}
             </ngb-alert>
+
+            <div class="row justify-content-center" *ngIf="_authService.loading">
+              <div class="loading"></div>
+            </div>
 
             <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
 
@@ -37,7 +41,10 @@
                       [ngClass]="{'disabled': !formData.valid}" >
                 Log in
               </button>
-              <a routerLink="/register" class="alc">Don't have an account?</a>
+              <div class="d-flex justify-content-around" style="font-size: 0.8em">
+                <a routerLink="" class="alc">Forgot password?</a>
+                <a routerLink="/register" class="alc">Don't have an account?</a>
+              </div>
             </form>
 
           </div>

@@ -19,6 +19,8 @@ export class ProfileComponent implements OnInit {
 
   user: any;
 
+  anonim: boolean;
+
   private _response = new Subject<string>();
   response: string;
   isResError: boolean;
@@ -28,6 +30,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this._authService.currentUser;
+    if(this._authService.currentUserDisplayName === 'Anonymous') this.anonim = true;
     this.createFormControls();
     this.createForm();
 

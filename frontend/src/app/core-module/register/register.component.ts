@@ -54,6 +54,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
+    this.response = '';
+    this.error = '';
     this._authService.emailSignUp(this.name.value, this.email.value, this.password.value)
       .then((res: any) => {
         this.response = "You have been registered! You can log in now.";

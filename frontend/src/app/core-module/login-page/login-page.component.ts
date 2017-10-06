@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../_services/AuthService";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-page',
@@ -9,17 +8,38 @@ import {Router} from "@angular/router";
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private _router: Router, private _authService: AuthService) {
+  error: string;
+
+  constructor(public _authService: AuthService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
+    this.error = '';
   }
 
   googleLogin(): void {
-    this._authService.googleLogin();
+    this._authService.googleLogin()
+      .catch((error: any) => {
+        this.error = error;
+      });
+  }
+
+  facebookLogin(): void {
+    this._authService.facebookLogin()
+      .catch((error: any) => {
+        this.error = error;
+      });
+
   }
 
   anonymousLogin(): void {
-    this._authService.anonymousLogin();
+    this._authService.anonymousLogin()
+      .catch((error: any) => {
+        this.error = error;
+      });
+  }
+
+  hehe(){
+    this.error = "hehe";
   }
 }
