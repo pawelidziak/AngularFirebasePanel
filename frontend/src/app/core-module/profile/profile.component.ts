@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../_services/AuthService";
+import {Subject} from "rxjs/Subject";
+import {debounceTime} from "rxjs/operator/debounceTime";
 
 @Component({
   selector: 'app-profile',
@@ -10,58 +12,83 @@ import {AuthService} from "../../_services/AuthService";
 export class ProfileComponent implements OnInit {
 
   personalForm: FormGroup;
-  name: FormControl;
-  email: FormControl;
-  passwordForm: FormGroup;
-  oldPassword: FormControl;
-  newPassword: FormControl;
-  confirmPassword: FormControl;
+  newName: FormControl;
 
-  response: string;
-  error: string;
-  loading: boolean;
+  emailForm: FormGroup;
+  newEmail: FormControl;
 
   user: any;
 
-  constructor(private _authService: AuthService) { }
+  private _response = new Subject<string>();
+  response: string;
+  isResError: boolean;
+
+  constructor(private _authService: AuthService) {
+  }
 
   ngOnInit() {
     this.user = this._authService.currentUser;
     this.createFormControls();
     this.createForm();
+
+    this._response.subscribe((message) => this.response = message);
+    debounceTime.call(this._response, 5000).subscribe(() => this.response = null);
   }
 
   private createFormControls(): void {
-    this.email = new FormControl('', [
-      Validators.required,
-      Validators.pattern('(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])')
-    ]);
-    this.name = new FormControl('', [
-      Validators.required
-    ]);
-    this.oldPassword = new FormControl('', [
-      Validators.required
-    ]);
-    this.newPassword = new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(30),
-      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$&+,:;=?@#|\'<>.^*()\\%!-]).+$')
-    ]);
-    this.confirmPassword = new FormControl('', [
-      Validators.required
-    ]);
+    this.newName = new FormControl();
+    this.newEmail = new FormControl('', Validators.required);
   }
 
   private createForm(): void {
     this.personalForm = new FormGroup({
-      email: this.email,
-      name: this.name
+      newName: this.newName
     });
-    this.passwordForm = new FormGroup({
-      oldPassword: this.oldPassword,
-      newPassword: this.newPassword,
-      confirmPassword: this.confirmPassword
+    this.emailForm = new FormGroup({
+      newEmail: this.newEmail
     });
   }
+
+
+  resetPassword() {
+    this._authService.resetPassword(this.user.email)
+      .then(() => {
+        this.isResError = false;
+        this._response.next('Email has been send. Follow the instructions in e-mail.');
+      })
+      .catch((error: any) => {
+        this.isResError = true;
+        this._response.next(error);
+      });
+  }
+
+  updateEmail(): void {
+    this._authService.updateEmail(this.newEmail.value)
+      .then(() => {
+        this.isResError = false;
+        this._response.next('Email updated correctly.');
+        this.user = this._authService.currentUser;
+        this.emailForm.reset();
+      })
+      .catch((error: any) => {
+        this.isResError = true;
+        this._response.next(error);
+      });
+  }
+
+  updatePersonal(): void {
+    this._authService.updatePersonal(this.newName.value)
+      .then((res: any) => {
+        this.isResError = false;
+        this._response.next('Profile updated correctly.');
+        this.user = this._authService.currentUser;
+        this.emailForm.reset();
+      })
+      .catch((error: any) => {
+        this.isResError = true;
+        this._response.next(error);
+      });
+  }
+
+  checkRes = () => this.isResError ? 'danger' : 'success';
 }

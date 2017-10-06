@@ -9,7 +9,7 @@ import {AuthService} from "../../_services/AuthService";
 export class HomeComponent implements OnInit {
 
   user: any;
-
+  username: string;
   constructor(private _authService: AuthService) {
   }
 

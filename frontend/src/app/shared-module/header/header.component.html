@@ -23,7 +23,7 @@
 
               <div class="text-center nav-link" id="aboutMe" ngbDropdownToggle>
                 <i class="fa fa-user-circle align-middle"></i><br>
-                <span>{{user.email}}</span>
+                <span>{{_authService.currentUserDisplayName}}</span>
               </div>
 
               <div ngbDropdownMenu aria-labelledby="aboutMe">

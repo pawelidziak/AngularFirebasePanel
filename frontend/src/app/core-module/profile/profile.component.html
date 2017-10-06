@@ -6,44 +6,39 @@
     <div class="row justify-content-center my-box">
       <div class="col-12 col-md-10 profile-content">
 
-        <ngb-alert class="text-center" type="danger" *ngIf="response" [dismissible]="false">
+        <ngb-alert class="text-center" [type]="checkRes()" *ngIf="response" [dismissible]="false">
           {{response}}
-        </ngb-alert>
-        <ngb-alert class="text-center" type="danger" *ngIf="error" [dismissible]="false">
-          {{error}}
         </ngb-alert>
 
         <ngb-accordion [closeOthers]="true" activeIds="change-personal">
 
-          <ngb-panel id="change-personal" title="Change Personal">
+          <ngb-panel id="change-personal" title="Change Profile">
             <ng-template ngbPanelContent>
 
               <div class="row justify-content-center">
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-md-6">
 
-                  <form [(formGroup)]="personalForm" novalidate #f="ngForm" (ngSubmit)="f.form.valid && changePersonal()">
-
-                    <div class="form-group">
-                      <input type="text" class="form-control" formControlName="name" [(ngModel)]="user.displayName"
-                             required placeholder="Name"/>
-                      <ngb-alert type="danger" *ngIf="f.submitted && !name.valid" [dismissible]="false">
-                        Name is require
-                      </ngb-alert>
-                    </div>
+                  <form [(formGroup)]="personalForm" novalidate #f="ngForm"
+                        (ngSubmit)="f.form.valid && updatePersonal()">
 
                     <div class="form-group">
-                      <input type="text" class="form-control" formControlName="email" [(ngModel)]="user.email" required
-                             placeholder="Email*"/>
-                      <ngb-alert type="danger" *ngIf="f.submitted && !email.valid" [dismissible]="false">
-                        Email is require
-                      </ngb-alert>
+                      <label for="name">Current display name</label>
+                      <input class="form-control" type="text" [value]="user.displayName" readonly id="name"/>
                     </div>
 
-                    <div class="form-group text-center">
-                      <button [disabled]="loading" class="btn btn-outline-success">Save</button>
-                      <img *ngIf="loading"
-                           src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+
+                    <div class="form-group">
+                      <label for="newName">New display name</label>
+                      <input class="form-control" type="text" placeholder="New name.." formControlName="newName"
+                             id="newName"/>
                     </div>
+
+                    <p> Here can be file browser to change photo</p>
+
+                    <button type="submit" class="btn btn-primary" id="changePersonal">
+                      Save
+                    </button>
+
                   </form>
 
                 </div>
@@ -52,46 +47,46 @@
             </ng-template>
           </ngb-panel>
 
-          <ngb-panel id="change-password" title="Change Password">
+          <ngb-panel id="change-email" title="Change Email">
             <ng-template ngbPanelContent>
 
               <div class="row justify-content-center">
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-md-6">
 
-                  <form [(formGroup)]="passwordForm" novalidate #f="ngForm" (ngSubmit)="f.form.valid && changePassword()">
+                  <form [(formGroup)]="emailForm" novalidate #f="ngForm" (ngSubmit)="f.form.valid && updateEmail()">
 
                     <div class="form-group">
-                      <input type="password" class="form-control" formControlName="oldPassword" [(ngModel)]="oldPassword.value"
-                             required placeholder="Old password*"/>
-                      <ngb-alert type="danger" *ngIf="f.submitted && !oldPassword.valid" [dismissible]="false">
-                        You have to type old password
-                      </ngb-alert>
+                      <label for="email">Current email</label>
+                      <input class="form-control" type="text" [value]="user.email" readonly id="email"/>
                     </div>
 
                     <div class="form-group">
-                      <input type="password" class="form-control" formControlName="newPassword" [(ngModel)]="newPassword.value" required
-                             placeholder="New Password*"/>
-                      <ngb-alert type="danger" *ngIf="f.submitted && !newPassword.valid" [dismissible]="false">
-                        Wrong password. Password requirements: 8-30 marks, small letter, big letter, digit and special
-                        character
-                      </ngb-alert>
+                      <label for="newEmail">New email</label>
+                      <input type="text" class="form-control" formControlName="newEmail" placeholder="New email.."
+                             id="newEmail" required/>
                     </div>
 
-                    <div class="form-group">
-                      <input type="password" class="form-control" formControlName="confirmPassword" required
-                             placeholder="Confirm password*"/>
-                      <ngb-alert type="danger" *ngIf="f.submitted && confirmPassword.value !== newPassword.value"
-                                 [dismissible]="false">
-                        Password mismatch
-                      </ngb-alert>
-                    </div>
-
-                    <div class="form-group text-center">
-                      <button [disabled]="loading" class="btn btn-outline-success">Save</button>
-                      <img *ngIf="loading"
-                           src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-                    </div>
+                    <button type="submit" [disabled]="!emailForm.valid" class="btn btn-primary" id="changeEmail"
+                            [ngClass]="{'disabled': !emailForm.valid}">
+                      Save
+                    </button>
                   </form>
+
+                </div>
+              </div>
+
+            </ng-template>
+          </ngb-panel>
+
+
+          <ngb-panel id="change-password" title="Change Password">
+            <ng-template ngbPanelContent>
+
+              <div class="row justify-content-center text-center">
+                <div class="col-12 col-md-6">
+
+                  <p class="awarded-text">You can reset your password by clicking the button bellow</p>
+                  <button class="btn btn-primary" id="reset" (click)="resetPassword()">Reset password</button>
 
                 </div>
               </div>

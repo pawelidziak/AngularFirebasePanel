@@ -9,12 +9,14 @@ import {AuthService} from "../../_services/AuthService";
 export class HeaderComponent implements OnInit {
 
   user: any;
+  username: string;
 
-  constructor(private _authService: AuthService) {
+  constructor(public _authService: AuthService) {
   }
 
   ngOnInit() {
     this.user = this._authService.currentUser;
+    this.username = this._authService.currentUserDisplayName;
   }
 
   logout(){

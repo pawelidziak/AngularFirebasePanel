@@ -87,7 +87,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.user = credential.user;
-        this.updateUserData();
+        // this.updateUserData();
         // this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
         this.router.navigate(['/home']);
       })
@@ -101,19 +101,19 @@ export class AuthService {
     return this.afAuth.auth.signInAnonymously()
       .then((user) => {
         this.user = user;
-        this.updateUserData();
+        this.router.navigate(['/home']);
       })
       .catch(error => console.log(error));
   }
 
   //// Email/Password Auth ////
 
-  emailSignUp(email: string, password: string) {
+  emailSignUp(name: string, email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.user = user;
-        console.log(user);
-        this.updateUserData()
+        this.updatePersonal(name);
+        this.router.navigate(['/home']);
       })
       .catch((error: any) => {
         throw new Error((error.message));
@@ -124,7 +124,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
         this.user = user;
-        this.updateUserData();
+        // this.updateUserData();
       })
       .catch((error: any) => {
         throw new Error((error.message));
@@ -136,8 +136,9 @@ export class AuthService {
     const auth = firebase.auth();
 
     return auth.sendPasswordResetEmail(email)
-      .then(() => console.log("email sent"))
-      .catch((error) => console.log(error))
+      .catch((error: any) => {
+        throw new Error((error.message));
+      });
   }
 
 
@@ -151,20 +152,38 @@ export class AuthService {
 
   //// Helpers ////
 
-  private updateUserData(): void {
-    // Writes user name and email to realtime db
-    // useful if your app displays information about users or for admin features
-
+  updateUserData(name: string, email: string) {
     let path = `users/${this.currentUserId}`; // Endpoint on firebase
     let data = {
-      email: this.user.email,
-      name: this.user.displayName
+      email: email,
+      name: name
     };
 
-    this.db.object(path).update(data)
-      .catch(error => console.log(error));
+    return this.db.object(path).update(data)
+      .catch((error: any) => {
+        throw new Error((error.message));
+      });
 
   }
 
 
+  updateEmail(email: string) {
+    const user = firebase.auth().currentUser;
+    return user.updateEmail(email)
+      .catch((error: any) => {
+        throw new Error((error.message));
+      });
+  }
+
+
+  updatePersonal(name: string) {
+    const user = firebase.auth().currentUser;
+
+    return user.updateProfile({
+      displayName: name,
+      photoURL: ''
+    }).catch((error: any) => {
+        throw new Error((error.message));
+      });
+  }
 }

@@ -13,16 +13,16 @@
 
           <div class="col-12 col-md-6">
             <img src="assets/images/lock.svg" class="welcome-icon">
-            <p class="welcome-text">You can login using your social media or anonymously</p>
+            <p class="awarded-text">You can login using your social media or anonymously</p>
           </div>
 
           <div class="col-12 col-md-6">
 
-            <button class="login-button" id="google" (click)="googleLogin()">Login with Google</button>
-            <button class="login-button" id="fb">Login with Facebook</button>
-            <button class="login-button" id="github">Login with GitHub</button>
-            <button class="login-button" id="anonim">Anonymously</button>
-            <button class="login-button" routerLink="/login-email" id="email">Email</button>
+            <button class="my-button" id="google" (click)="googleLogin()">Login with Google</button>
+            <button class="my-button" id="fb">Login with Facebook</button>
+            <button class="my-button" id="github">Login with GitHub</button>
+            <button class="my-button" id="anonim" (click)="anonymousLogin()">Anonymously</button>
+            <button class="my-button" routerLink="/login-email" id="email">Email</button>
 
             <a routerLink="/register" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
 

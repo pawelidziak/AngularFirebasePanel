@@ -17,7 +17,9 @@ export class LoginPageComponent implements OnInit {
 
   googleLogin(): void {
     this._authService.googleLogin();
-    this._router.navigate(['/home']);
   }
 
+  anonymousLogin(): void {
+    this._authService.anonymousLogin();
+  }
 }
