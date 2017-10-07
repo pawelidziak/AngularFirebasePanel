@@ -3,11 +3,13 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../_services/AuthService";
 import {Subject} from "rxjs/Subject";
 import {debounceTime} from "rxjs/operator/debounceTime";
+import {moveIn} from "../../router.animations";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  animations: [moveIn()]
 })
 export class ProfileComponent implements OnInit {
 
@@ -51,7 +53,6 @@ export class ProfileComponent implements OnInit {
       newEmail: this.newEmail
     });
   }
-
 
   resetPassword() {
     this._authService.resetPassword(this.user.email)

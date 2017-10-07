@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../_services/AuthService";
+import {moveInLeft} from "../../router.animations";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  animations: [moveInLeft()],
+  host: {'[@moveInLeft]': ''}
 })
 export class RegisterComponent implements OnInit {
 
@@ -17,9 +20,8 @@ export class RegisterComponent implements OnInit {
 
   error: string;
   response: string;
-  loading: boolean;
 
-  constructor(private _authService: AuthService) {
+  constructor(public _authService: AuthService) {
   }
 
   ngOnInit() {

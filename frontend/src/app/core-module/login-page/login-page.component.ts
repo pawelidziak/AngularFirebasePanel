@@ -1,10 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../_services/AuthService";
+import {moveInLeft} from "../../router.animations";
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
+  animations: [moveInLeft()],
+  host: {'[@moveInLeft]': ''}
 })
 export class LoginPageComponent implements OnInit {
 
@@ -45,7 +48,4 @@ export class LoginPageComponent implements OnInit {
       });
   }
 
-  hehe(){
-    this.error = "hehe";
-  }
 }

@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../_services/AuthService";
+import {moveIn} from "../../router.animations";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [moveIn()],
+  host: {'[@moveIn]': ''}
 })
 export class HomeComponent implements OnInit {
 
   user: any;
-  username: string;
-  constructor(private _authService: AuthService) {
+    constructor() {
   }
 
   ngOnInit() {
-    this.user = this._authService.currentUser;
   }
-
-  logout(){
-    this._authService.signOut();
-  }
-
 
 }

@@ -1,4 +1,4 @@
-import {AnimationEntryMetadata, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {CommonModule} from "@angular/common";
@@ -10,8 +10,6 @@ import {SharedModules} from "../shared-module/shared-module.module";
 import { LoginPageComponent } from './login-page/login-page.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LoginEmailComponent } from './login-email/login-email.component';
-
-import {style, transition, animate, trigger} from "@angular/animations";
 
 @NgModule({
   declarations: [

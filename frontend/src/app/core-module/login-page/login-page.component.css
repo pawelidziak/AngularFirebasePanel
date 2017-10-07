@@ -14,15 +14,16 @@
   background-size: 25px;
 }
 
+#anonim {
+  background: #F5F5F5 url('../../../assets/images/face.svg') no-repeat 25px;
+  background-size: 25px;
+}
+
 #email {
   background: #ECECEC url('../../../assets/images/email.svg') no-repeat 25px;
   background-size: 25px;
 }
 
-#anonim {
-  background: #D7CCC8 url('../../../assets/images/face.svg') no-repeat 25px;
-  background-size: 25px;
-}
 
 @media (max-width: 350px), (min-width: 768px) and (max-width: 1199px) {
   #google {
@@ -30,11 +31,11 @@
   }
 
   #fb {
-    background:#3B5998;
+    background: #3B5998;
   }
 
   #github {
-    background:#f9f9f9;
+    background: #f9f9f9;
   }
 
   #anonim {

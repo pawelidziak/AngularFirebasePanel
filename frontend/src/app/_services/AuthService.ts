@@ -96,16 +96,18 @@ export class AuthService {
       });
   }
 
-
   //// Anonymous Auth ////
 
   anonymousLogin() {
+    this.loading = true;
     return this.afAuth.auth.signInAnonymously()
       .then((user) => {
         this.user = user;
         this.router.navigate(['/home']);
+        this.loading = false;
       })
       .catch((error: any) => {
+        this.loading = false;
         throw new Error((error.message));
       });
   }

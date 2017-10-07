@@ -10,7 +10,7 @@
           <span class="header-spacing">Register</span>
         </div>
 
-        <div class="my-box-content text-center row">
+        <div class="my-box-content text-center row align-items-center">
 
           <div class="col-12 col-md-6">
             <img src="assets/images/account.svg" class="welcome-icon">
@@ -25,7 +25,7 @@
               {{error}}
             </ngb-alert>
 
-            <div class="row justify-content-center" *ngIf="_authService.loading">
+            <div class="row justify-content-center" *ngIf="_authService.getLoading">
               <div class="loading"></div>
             </div>
 
@@ -67,18 +67,15 @@
               </div>
 
               <div class="form-group text-center">
-                <button [disabled]="loading" class="btn btn-primary" type="submit" id="register">Register</button>
-                <img *ngIf="loading"
-                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                <button [disabled]="_authService.getLoading" class="btn btn-primary" type="submit" id="register">Register</button>
               </div>
             </form>
           </div>
 
-        </div>
+        </div> <!-- /my-box-content -->
 
-      </div>
+      </div> <!-- /my-box -->
     </div>
   </div>
 
-</section >
-
+</section>

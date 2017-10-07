@@ -2,7 +2,7 @@
 
   <app-header></app-header>
 
-  <div class="container">
+  <div class="container" [@moveIn]>
     <div class="row justify-content-center my-box">
 
       <p style="padding: 50px 0" *ngIf="anonim">You cannot change profile settings as Anonymous User.</p>
@@ -13,22 +13,21 @@
           {{response}}
         </ngb-alert>
 
-        <ngb-accordion [closeOthers]="true" activeIds="change-personal">
+        <ngb-accordion [closeOthers]="true" activeIds="change-profile">
 
-          <ngb-panel id="change-personal" title="Change Profile">
+          <!-- Change Profile -->
+          <ngb-panel id="change-profile" title="Change Profile">
             <ng-template ngbPanelContent>
 
               <div class="row justify-content-center">
                 <div class="col-12 col-md-6">
 
-                  <form [(formGroup)]="personalForm" novalidate #f="ngForm"
-                        (ngSubmit)="f.form.valid && updatePersonal()">
+                  <form [(formGroup)]="personalForm" novalidate #f="ngForm" (ngSubmit)="f.form.valid && updatePersonal()">
 
                     <div class="form-group">
                       <label for="name">Current display name</label>
                       <input class="form-control" type="text" [value]="user.displayName" readonly id="name"/>
                     </div>
-
 
                     <div class="form-group">
                       <label for="newName">New display name</label>
@@ -46,13 +45,12 @@
 
                 </div>
               </div>
-
             </ng-template>
           </ngb-panel>
 
+          <!-- Change Email -->
           <ngb-panel id="change-email" title="Change Email">
             <ng-template ngbPanelContent>
-
               <div class="row justify-content-center">
                 <div class="col-12 col-md-6">
 
@@ -77,11 +75,10 @@
 
                 </div>
               </div>
-
             </ng-template>
           </ngb-panel>
 
-
+          <!-- Change Password -->
           <ngb-panel id="change-password" title="Change Password">
             <ng-template ngbPanelContent>
 
