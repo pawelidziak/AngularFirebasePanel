@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../_services/AuthService";
 import {moveInLeft} from "../../router.animations";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
   error: string;
   response: string;
 
-  constructor(public _authService: AuthService) {
+  constructor(public _authService: AuthService, private _location: Location) {
   }
 
   ngOnInit() {
@@ -67,6 +68,10 @@ export class RegisterComponent implements OnInit {
         this.error = error;
         this.response = '';
       });
+  }
+
+  goBack() {
+    this._location.back();
   }
 
 }

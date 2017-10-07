@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
     this._authService.resetPassword(this.user.email)
       .then(() => {
         this.isResError = false;
-        this._response.next('Email has been send. Follow the instructions in e-mail.');
+        this._response.next('Email has been send. Follow the instructions in the e-mail.');
       })
       .catch((error: any) => {
         this.isResError = true;

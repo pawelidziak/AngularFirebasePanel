@@ -6,6 +6,7 @@ import {AuthGuard} from "./_quards/AuthGuard";
 import {ProfileComponent} from "./core-module/profile/profile.component";
 import {LoginEmailComponent} from "./core-module/login-email/login-email.component";
 import {LoginPageComponent} from "./core-module/login-page/login-page.component";
+import {ForgotPasswordComponent} from "./core-module/forgot-password/forgot-password.component";
 
 const appRoutes: Routes = [
   {
@@ -19,6 +20,10 @@ const appRoutes: Routes = [
   {
     path: 'login-email',
     component: LoginEmailComponent
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
   },
   {
     path: 'home',

@@ -10,6 +10,7 @@ import {SharedModules} from "../shared-module/shared-module.module";
 import { LoginPageComponent } from './login-page/login-page.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LoginEmailComponent } from './login-email/login-email.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginEmailComponent } from './login-email/login-email.component';
     HomeComponent,
     ProfileComponent,
     LoginPageComponent,
-    LoginEmailComponent
+    LoginEmailComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../_services/AuthService";
 import {moveInLeft} from "../../router.animations";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-login-email',
@@ -12,19 +13,25 @@ import {moveInLeft} from "../../router.animations";
 export class LoginEmailComponent implements OnInit {
 
   error: string;
+  email: string;
+  password: string;
 
-  constructor(public _authService: AuthService) {
+  constructor(public _authService: AuthService, private _location: Location) {
   }
 
   ngOnInit() {
   }
 
-  onSubmit(formData): void {
+  onSubmit(): void {
     this.error = '';
-    this._authService.emailLogin(formData.value.email, formData.value.password)
+    this._authService.emailLogin(this.email, this.password)
       .catch((error: any) => {
         this.error = error;
       });
+  }
+
+  goBack() {
+    this._location.back();
   }
 
 }
