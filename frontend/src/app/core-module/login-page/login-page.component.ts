@@ -29,7 +29,13 @@ export class LoginPageComponent implements OnInit {
       .catch((error: any) => {
         this.error = error;
       });
+  }
 
+  githubLogin(): void {
+    this._authService.githubLogin()
+      .catch((error: any) => {
+        this.error = error;
+      });
   }
 
   anonymousLogin(): void {

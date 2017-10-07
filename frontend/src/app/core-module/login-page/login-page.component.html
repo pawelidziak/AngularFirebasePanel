@@ -22,13 +22,13 @@
               {{error}}
             </ngb-alert>
 
-            <div class="row justify-content-center" *ngIf="_authService.loading">
+            <div class="row justify-content-center" *ngIf="_authService.getLoading">
               <div class="loading"></div>
             </div>
 
             <button class="my-button" id="google" (click)="googleLogin()">Login with Google</button>
             <button class="my-button" id="fb" (click)="facebookLogin()">Login with Facebook</button>
-            <button class="my-button" id="github">Login with GitHub</button>
+            <button class="my-button" id="github" (click)="githubLogin()">Login with GitHub</button>
             <button class="my-button" id="anonim" (click)="anonymousLogin()">Anonymously</button>
             <button class="my-button" routerLink="/login-email" id="email">Email</button>
 

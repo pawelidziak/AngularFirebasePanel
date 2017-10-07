@@ -24,10 +24,6 @@ export class AuthService {
     return this.loading;
   }
 
-  set setLoading(value: boolean) {
-    this.loading = value;
-  }
-
   // Returns true if user is logged in
   get authenticated(): boolean {
     return this.user !== null;
@@ -71,12 +67,6 @@ export class AuthService {
   }
 
   //// Social Auth ////
-
-  githubLogin() {
-    const provider = new firebase.auth.GithubAuthProvider();
-    return this.socialSignIn(provider);
-  }
-
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.socialSignIn(provider);
@@ -87,8 +77,8 @@ export class AuthService {
     return this.socialSignIn(provider);
   }
 
-  twitterLogin() {
-    const provider = new firebase.auth.TwitterAuthProvider();
+  githubLogin() {
+    const provider = new firebase.auth.GithubAuthProvider();
     return this.socialSignIn(provider);
   }
 
@@ -174,23 +164,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-
-  //// Helpers ////
-
-  updateUserData(name: string, email: string) {
-    let path = `users/${this.currentUserId}`; // Endpoint on firebase
-    let data = {
-      email: email,
-      name: name
-    };
-
-    return this.db.object(path).update(data)
-      .catch((error: any) => {
-        throw new Error((error.message));
-      });
-
-  }
-
+  // UPDATE USER
 
   updateEmail(email: string) {
     const user = firebase.auth().currentUser;
@@ -199,7 +173,6 @@ export class AuthService {
         throw new Error((error.message));
       });
   }
-
 
   updatePersonal(name: string) {
     const user = firebase.auth().currentUser;
