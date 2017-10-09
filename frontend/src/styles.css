@@ -11,24 +11,23 @@ button {
   cursor: pointer;
 }
 
+/* HEADER */
+
 .my-header-style {
   background: #10c982;
   color: white;
 }
 
-*[class*="--spacing"] {
-  letter-spacing: 2px;
-}
-
-*[class*="--awarded"] {
-  font-weight: 700;
+.header-spacing {
+  letter-spacing: 0.1em;
 }
 
 /* BOX */
 .my-box {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24);
   background: #fff;
-  border-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .my-box-header {
@@ -48,14 +47,7 @@ button {
   margin: 0;
 }
 
-/*@media (max-width: 991px) {*/
-  /*.my-box-content {*/
-    /*padding: 25px 0;*/
-  /*}*/
-/*}*/
-
-/*AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
-
+/* PRZYCISKI */
 .my-button {
   padding: 0.3em;
   width: 100%;
@@ -71,11 +63,7 @@ button {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
 }
 
-.header-spacing {
-  letter-spacing: 0.1em;
-}
-
-
+/* IKONA POWROTU */
 #arrow-back {
   background: url('assets/images/arrow-back.svg');
   background-size: 36px;
@@ -90,13 +78,14 @@ button {
   transform: scale(1.1);
 }
 
-
+/* IKONY W PANELU LOGOWANIA*/
 .welcome-icon {
   width: 40%;
   margin: 0 auto;
   display: block;
 }
 
+/* HELPERS */
 .awarded-text {
   letter-spacing: 0.05rem;
   margin: 2rem 0;
@@ -107,7 +96,7 @@ button {
   cursor: not-allowed;
 }
 
-
+/* SPINNER */
 .loading {
   background: url("assets/images/oval.svg") no-repeat;
   width: 50px;
