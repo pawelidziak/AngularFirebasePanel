@@ -3,13 +3,13 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../_services/AuthService";
 import {Subject} from "rxjs/Subject";
 import {debounceTime} from "rxjs/operator/debounceTime";
-import {moveIn} from "../../router.animations";
+import {fadeInAnimation} from "../../router.animations";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  animations: [moveIn()]
+  animations: [fadeInAnimation()]
 })
 export class ProfileComponent implements OnInit {
 

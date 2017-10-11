@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../_services/AuthService";
 import {Location} from '@angular/common';
-import {moveInLeft} from "../../router.animations";
+import {fadeInAnimation} from "../../router.animations";
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.css'],
-  animations: [moveInLeft()],
-  host: {'[@moveInLeft]': ''}
+  animations: [fadeInAnimation()]
 })
 export class ForgotPasswordComponent implements OnInit {
 

@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../_services/AuthService";
-import {moveInLeft} from "../../router.animations";
+import {fadeInAnimation} from "../../router.animations";
 import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-login-email',
   templateUrl: './login-email.component.html',
   styleUrls: ['./login-email.component.css'],
-  animations: [moveInLeft()],
-  host: {'[@moveInLeft]': ''}
+  animations: [fadeInAnimation()]
 })
 export class LoginEmailComponent implements OnInit {
 

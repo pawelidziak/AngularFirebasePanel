@@ -1,15 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../_services/AuthService";
-import {moveInLeft} from "../../router.animations";
+import {fadeInAnimation} from "../../router.animations";
 import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  animations: [moveInLeft()],
-  host: {'[@moveInLeft]': ''}
+  animations: [fadeInAnimation()]
 })
 export class RegisterComponent implements OnInit {
 
